@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <style>
+    /* 註冊頁面樣式 */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e2e;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #252526;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(to right, #ff007f, #0df0ff);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: linear-gradient(to right, #0df0ff, #ff007f);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <form id="signUpForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Create Account</button>
+    </form>
+  </div>
+
+  <script>
+    // 當用戶註冊後，將用戶名儲存在 localStorage，然後跳轉到登入頁面
+    document.getElementById('signUpForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // 防止表單提交
+      const username = document.getElementById('username').value;
+      localStorage.setItem('username', username); // 儲存用戶名
+      window.location.href = 'login.html'; // 跳轉到登入頁面
+    });
+  </script>
+</body>
+</html>
+

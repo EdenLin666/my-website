@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ur CHOICE ur VOICE</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <style>
+    :root {
+      --primary: #ff007f;
+      --secondary: #0df0ff;
+      --accent: #ff8800;
+      --background: #121212;
+      --foreground: #1e1e2e;
+      --text-color: #e0e0e0;
+      --highlight: #ff62a5;
+    }
+
+
+    .site-footer {
+  background-color: #052640;
+  color: white;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-logo {
+  height: 80px;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-divider {
+  margin: 20px 0;
+  border: 1px solid #35556d;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.social-icons img {
+  height: 24px;
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.legal-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.back-to-top {
+  background: white;
+  color: #052640;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, var(--foreground), var(--background));
+      color: var(--text-color);
+      margin: 0;
+      overflow-x: hidden;
+      width: 100%;
+      height: 100vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    .background-glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(100px);
+      animation: float 6s infinite alternate ease-in-out;
+      z-index: 0;
+    }
+
+    .glow1 { background: var(--primary); top: 10%; left: 15%; }
+    .glow2 { background: var(--secondary); bottom: 10%; right: 15%; }
+    .glow3 { background: var(--accent); top: 60%; left: 40%; }
+
+    @keyframes float {
+      0% { transform: translateY(-10px); }
+      100% { transform: translateY(10px); }
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center; /* Align logo and title vertically */
+      justify-content: flex-start;
+      padding: 10px 20px;
+      
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 60px; /* Adjust logo size */
+      height: auto; /* Maintain aspect ratio */
+      margin-right: 20px; /* Space between logo and title */
+    }
+
+    .title {
+      font-size: 40px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255, 0, 127, 0.8),
+                   0 0 20px rgba(0, 255, 255, 0.6);
+    }
+
+    .info-box {
+      position: fixed;
+      top: 30px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+      background: rgba(37, 37, 38, 0.7);
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: infoBoxFadeIn 1s ease-out forwards;
+    }
+
+    @keyframes infoBoxFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .info-box a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .info-box a:hover {
+      color: var(--highlight);
+    }
+
+    .vote-container {
+      text-align: center;
+      margin-top: 150px;
+      opacity: 0;
+      transform: translateY(100px);
+      animation: fadeInUp 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .vote-button {
+      padding: 20px 50px;
+      font-size: 28px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255, 0, 127, 0.8);
+      transition: all 0.3s ease;
+      animation: pulse 1.5s infinite alternate ease-in-out;
+    }
+
+    .vote-button:hover {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+      from {
+        box-shadow: 0 0 20px rgba(255, 0, 127, 0.7);
+      }
+      to {
+        box-shadow: 0 0 35px rgba(13, 240, 255, 0.8);
+      }
+    }
+
+    .irv-content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+      background: rgba(37, 37, 38, 0.8);
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      margin: 100px auto;
+      width: 80%;
+    }
+
+    .irv-content.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .irv-content:hover {
+      transform: scale(1.05) rotateY(10deg) rotateX(5deg);
+      transition: transform 0.3s ease-out;
+    }
+
+    .irv-content p {
+      position: relative;
+      z-index: 10;
+      color: #fff;
+    }
+
+    .three-box-section {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 60px 10%;
+      opacity: 0;
+      transform: translateY(100px);
+      animation: threeBoxSectionFadeIn 1.5s ease-out forwards;
+    }
+
+    @keyframes threeBoxSectionFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .intro-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 300px;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .intro-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+    }
+
+    .intro-box img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .intro-text {
+      font-size: 16px;
+      color: var(--text-color);
+    }
+
+    .privacy-section {
+      margin: 100px auto;
+      width: 80%;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(255, 0, 127, 0.2);
+      opacity: 0;
+      transform: translateY(100px);
+      animation: privacySectionFadeIn 1.5s ease-out forwards;
+    }
+
+    @keyframes privacySectionFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .privacy-section h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 30px;
+    }
+
+    .privacy-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .contact-section {
+      margin: 100px auto;
+      width: 80%;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      opacity: 0;
+      transform: translateY(100px);
+      animation: contactSectionFadeIn 1.5s ease-out forwards;
+    }
+
+    @keyframes contactSectionFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contact-section h2 {
+      text-align: center;
+      color: var(--secondary);
+    }
+
+    .contact-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+      background: #222;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      color: white;
+    }
+
+    .contact-section button {
+      align-self: center;
+      padding: 10px 30px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .contact-section button:hover {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      transform: scale(1.05);
+    }
+
+    .subtitle {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: #a0a0a0;
+      font-size: 18px;
+    }
+
+    .subtitle span { color: var(--secondary); font-weight: bold; }
+
+    @media (max-width: 768px) {
+      .three-box-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .map-section {
+  margin: 100px auto;
+  width: 80%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100px);
+  animation: mapSectionFadeIn 1.5s ease-out forwards;
+}
+
+@keyframes mapSectionFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.map-section {
+  margin: 100px auto;
+  width: 90%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100px);
+  animation: mapSectionFadeIn 1.5s ease-out forwards;
+}
+
+@keyframes mapSectionFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.map-title {
+  color: var(--primary);
+  margin-bottom
+  font-size: 32px;
+  text-shadow: 0 0 10px rgba(255,0,127,0.8);
+}
+
+/* 新增下面這段👇 */
+.map-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.map-container:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+}
+
+
+.map-left {
+  flex: none; /* 不要自動撐開 */
+  width: 400px; /* 正方形寬 */
+  height: 400px; /* 正方形高 */
+  margin-right: 20px;
+  pointer-events: auto; /* 保證可以滑動地圖 */
+}
+
+.map-right {
+  flex: 0.8;
+  text-align: left;
+  color: var(--text-color);
+}
+
+.map-right h3 {
+  color: var(--secondary);
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.map-right p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* 響應式調整，手機板變直排 */
+@media (max-width: 768px) {
+  .map-container {
+    flex-direction: column;
+  }
+  .map-left, .map-right {
+    width: 100%;
+    margin-right: 0;
+  }
+  .map-left iframe {
+    height: 300px;
+  }
+}
+
+
+
+
+  </style>
+</head>
+  
+<body onload="document.getElementById('irvBox').classList.add('fade-in')">
+  <div class="background-glow glow1"></div>
+  <div class="background-glow glow2"></div>
+  <div class="background-glow glow3"></div>
+
+  <!-- Header with Logo -->
+  <div class="header">
+    <img src="https://scontent-tpe1-1.xx.fbcdn.net/v/t1.15752-9/491787617_988523336800948_2256304630250391161_n.png?_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=R0BJLaLvqf4Q7kNvwG4FIFl&_nc_oc=Adm9kJMZYObFvd18nnX85ZJTW8TgO_xOVd7nLBSDMaQ7BeNdA70VXqWBla8PPMDHoAs&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-tpe1-1.xx&oh=03_Q7cD2AFp6H8oAZzB8ZNRO0iHqw20iae3TLkFuTlNu5YROZZ0pw&oe=68351FB9" class="logo">
+    <div class="title">ur <span class="choice">CHOICE</span> ur <span class="voice">VOICE</span></div>
+  </div>
+
+  <!-- Info Box Section -->
+  <div class="info-box">
+    <a href="signup.html">Sign Up</a>
+    <a href="login.html">Log In</a>
+    <a href="#threeBoxSection">About Us</a>
+    <a href="#privacySection">Privacy</a>
+    <a href="#contactSection">Contact</a>
+  </div>
+  
+  <div class="vote-container">
+    <button class="vote-button" onclick="location.href='voting.html'">VOTE NOW</button>
+  </div>
+
+  <!-- IRV Content -->
+  <div class="irv-content" id="irvBox">
+    <h2>What is IRV?</h2>
+    <p>Instant-runoff voting (IRV; ranked-choice voting) is a single-winner election system where candidates are eliminated in rounds until one gains a majority.</p>
+  </div>
+
+  <!-- About Us Section -->
+  <div class="three-box-section" id="threeBoxSection">
+    <div class="intro-box">
+      <a href="https://www.instagram.com/ru_4ever/" target="_blank">
+      <img src="https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.15752-9/491027073_1203811704752775_2911966845804109531_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=sEL2KzXTrIEQ7kNvwFhlMME&_nc_oc=AdlJCHlXDAuf01BZyBYUHhQ25i9PadsNE6GYtL6_t7c9kjvz51JR8IjBamydeKc2XKZoY96O49lODOF3eomj07E9&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.ftpe7-1.fna&oh=03_Q7cD2AG1-RrmNXJnm_kyCdvgBHgyujfL4JczcBrw05SsUb4knw&oe=6833BF1C" alt="Eden portrait"></a>
+      <p class="intro-text">Wsgggg! I'm Eden, passionate about innovation and always chasing bold ideas. Love coding and programming, JavaScript is my main language.</p>
+    </div>
+    <div class="intro-box">
+      <a href="https://www.instagram.com/wesley12345678907/" target="_blank">
+      <img src="https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.15752-9/491348916_683672884252268_8925568052082713802_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=tXOL-96DGPwQ7kNvwGyNnrc&_nc_oc=Adnogd2QmuScPCaGUR9xVsXCT8DsuyAuxYErJDlHLmIkFwtapyNEZ9I1fqgG1sPI2a-DjSnPWJIS23T0sbf_cbhI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.ftpe7-2.fna&oh=03_Q7cD2AHeWnqNd_RD3PaUXgzvNZC9hZaLAsbvPhRiYcOQGtEthA&oe=6833F5F3" alt="Wesley portrait"></a>
+      <p class="intro-text">I'm Wesley. As a member of this research project, my role is taking care of the writing in the research paper.</p>
+    </div>
+    <div class="intro-box">
+      <a href="https://www.instagram.com/joe.yuseven/" target="_blank">
+      <img src="https://static-brix-prod.s3.ap-northeast-1.amazonaws.com/galaxy/upload/photo/2c9880838cce5f17018cceec3f120004.jpg" alt="Joe portrait"></a>
+      <p class="intro-text">Whattupppp yall, my name is Joe. I'm a current Year 10 student at Nanshan High School. I love coding and simulations!</p>
+    </div>
+  </div>
+
+  <!-- Privacy Section -->
+  <div class="privacy-section" id="privacySection">
+    <h2>Privacy, Safety & Cybersecurity</h2>
+    <div class="privacy-content">
+      <p>We value your privacy and data security. All votes are encrypted and anonymized using advanced cryptographic techniques. Our platform is protected with multi-layer authentication, end-to-end encryption, and real-time threat detection systems to ensure your information remains safe.</p>
+      <p>Your interactions with this site are secured via HTTPS. We do not collect or sell personal data. All information shared is used solely for improving platform reliability and performance.</p>
+      <p>By participating in our voting platform, you agree to our commitment to digital integrity and cybersecurity best practices. We work tirelessly to ensure a secure and trusted experience for every user.</p>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="contact-section" id="contactSection">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="6" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+  </div>
+
+
+<!-- Map Section -->
+<div class="map-section" id="mapSection">
+    <h2 class="map-title">🏢 Our Headquarters</h2>
+    <div class="map-container">
+      <!-- 左邊地圖 -->
+      <div class="map-left">
+        <div class="map-left">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.8645049066465!2d121.577708!3d25.037916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aba6bd30e94f%3A0xb855b7fed7e1d55f!2zMTEw5Y-w5YyX5biC5p2x5Y2A5p2x5Z-O6LevMjXlt7cyMznomZ8!5e0!3m2!1szh-TW!2stw!4v1714305272798!5m2!1szh-TW!2stw" 
+            style="border:0; border-radius: 15px; width:100%; height:100%;" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+        
+      </div>
+  
+      <!-- 右邊介紹文字 -->
+      <div class="map-right">
+        <h1>Visit Our JEWTaipei HQ</h1>
+        <h3>Innovation & Creativity</h3>
+        <p>Our headquarters is located in the heart of Taipei City, offering easy access and a vibrant environment for innovation and collaboration.</p>
+        <p>Address: No.33, Lane 25, Songde Road, Xinyi District, Taipei City 110, Taiwan</p>
+        <p>Come and visit us! Let's make ideas happen together.</p>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <!-- Footer -->
+  <div class="subtitle">Website developed by a <span>professional</span></div>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const title = document.querySelector('.title');
+      const infoBox = document.querySelector('.info-box');
+      const threeBox = document.getElementById('threeBoxSection');
+      const contactSection = document.getElementById('contactSection');
+
+      if (window.scrollY > 50) {
+        title.style.display = 'none';
+        infoBox.style.display = 'none';
+      } else {
+        title.style.display = 'block';
+        infoBox.style.display = 'flex';
+      }
+
+      if (threeBox.getBoundingClientRect().top < window.innerHeight - 100) {
+        threeBox.classList.add('show');
+      }
+
+      if (contactSection.getBoundingClientRect().top < window.innerHeight - 100) {
+        contactSection.classList.add('show');
+      }
+    });
+
+    document.querySelectorAll('.intro-box').forEach(box => {
+      box.addEventListener('mousemove', e => {
+        const rect = box.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * 10;
+        const rotateY = ((x - centerX) / centerX) * -10;
+
+        box.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      });
+
+      box.addEventListener('mouseleave', () => {
+        box.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
+
+
+
+
+    function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+  </script>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <img src="https://sdmntprwestus.oaiusercontent.com/files/00000000-5f90-6230-bb59-a300ed1c1bb3/raw?se=2025-04-28T15%3A30%3A15Z&sp=r&sv=2024-08-04&sr=b&scid=d717968a-6b26-509b-808b-a1ee135f9b22&skoid=4ae7b564-2531-470e-8ddb-6913f4bee2ee&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-28T12%3A11%3A44Z&ske=2025-04-29T12%3A11%3A44Z&sks=b&skv=2024-08-04&sig=UWXRRM%2By0tvGOSNCuy79Xe4c9DQkTIUymnME5NjPjsI%3D" alt="Logo" class="footer-logo">
+    <nav class="footer-nav">
+      <a href="press.html">Press center</a>
+      <a href="#">Bean Empire.gov</a>
+      <a href="#">Office of the Inspector General</a>
+      <a href="#">Archives</a>
+      <a href="#">Contact Us</a>
+    </nav>
+  </div>
+
+  <hr class="footer-divider">
+
+  <div class="footer-bottom">
+    <div class="social-icons">
+      <span>FOLLOW US</span>
+      <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/023/741/223/non_2x/facebook-logo-icon-social-media-icon-free-png.png" alt="Facebook"></a>
+      <a href="#"><img src="https://tse2.mm.bing.net/th/id/OIP.owIGI1pmITqbCKDVO2-ZIAHaHa?rs=1&pid=ImgDetMain" alt="X"></a>
+      <a href="#"><img src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-instagram-new-circle-1024.png" alt="Instagram"></a>
+      <a href="#"><img src="https://as1.ftcdn.net/v2/jpg/05/62/75/34/1000_F_562753483_E9FPSVj8HbSXL2CppvcygWonZrUt9EjU.jpg" alt="YouTube"></a>
+      <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/012/871/452/non_2x/gmail-icon-google-product-illustration-free-png.png" alt="Email"></a>
+    </div>
+
+    <div class="legal-links">
+      <a href="https://www.nssh.ntpc.edu.tw/app/home.php">Our school</a>
+      <a href="#">Accessibility Statement</a>
+      <a href="#">Copyright Information</a>
+      <a href="#">FOIA</a>
+      <a href="#">No FEAR Act</a>
+    </div>
+
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+  </div>
+</footer>
+
+</body>
+</html>

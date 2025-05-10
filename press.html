@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>press center</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .info-box {
+      position: fixed;
+      top: 30px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+      background: rgba(37, 37, 38, 0.7);
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: infoBoxFadeIn 1s ease-out forwards;
+    }
+
+    @keyframes infoBoxFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .info-box a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .info-box a:hover {
+      color: var(--highlight);
+    }
+
+
+
+
+
+    .search-bar {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .search-bar input {
+      width: 50%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .news-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 2rem 3rem;
+    }
+    .news-card {
+      background-color: white;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .news-card:hover {
+      transform: scale(1.03);
+    }
+    .news-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .news-info {
+      padding: 1rem;
+    }
+    .news-info h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #003366;
+    }
+    .news-info .date {
+      font-size: 0.9rem;
+      color: gray;
+      margin-bottom: 0.5rem;
+    }
+    .news-info .summary {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .read-more {
+      text-decoration: none;
+      color: white;
+      background-color: #007acc;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: background-color 0.2s;
+    }
+    .read-more:hover {
+      background-color: #005f99;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Latest news</h1>
+  </header>
+
+  <div class="info-box">
+    <a href="signup.html">Sign Up</a>
+    <a href="login.html">Log In</a>
+    <a href="#threeBoxSection">About Us</a>
+    <a href="#privacySection">Privacy</a>
+    <a href="#contactSection">Contact</a>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search News...." />
+  </div>
+
+  <div class="news-container" id="newsContainer">
+    <!-- 新聞卡片將由 JS 插入 -->
+  </div>
+
+  <script>
+    const newsData = [
+      {
+        title: "US is weeks away from supply chain disruptions",
+        date: "2025/05/01",
+        summary: "The last boats without crippling tariffs from China are arriving.......",
+        image: "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2210959431.jpg?c=16x9&q=h_720,w_1280,c_fill",
+        link: "us.disruptive.html"
+      },
+      {
+        title: "Ukraine Launches Spring Counteroffensive with Western Support",
+        date: "2025/04/30",
+        summary: "Ukrainian forces have initiated a new counteroffensive in the eastern regions, bolstered by fresh arms supplies from NATO countries......",
+
+
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHLotPDCtnOu43sIV0bkQwT_zjg95-CaSciA&s",
+        link: "ukraine.html"
+      },
+      {
+        title: "Global Markets React to Sudden Oil Supply Cuts by OPEC+",
+        date: "2025/05/01",
+        summary: "OPEC+ surprised global markets with a sudden announcement of oil production cuts, sending crude prices soaring and sparking inflation........",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66_UR6aWA8z7lAu0FB3B5bVr9_djOHNFwDw&s",
+        link: "global.html"
+      },
+      {
+        title: "Taiwan Strengthens Global Ties Amid Indo-Pacific Realignments",
+        date: "2025/05/01",
+        summary: "In response to rising regional tensions, Taiwan has expanded trade and security dialogues with India, Australia, and key European allies, reinforcing its position in the Indo-Pacific alliance network.",
+        image: "https://macdonaldlaurier.ca/wp-content/uploads/2021/06/MLI_A-pacific-realignment_webinar_feature.jpg",
+        link: "taiwan.html"
+      },
+      {
+        title: "Tensions Rise in South China Sea as Naval Drills Expand",
+        date: "2025/05/01",
+        summary: "Amid growing maritime disputes, joint military exercises between the US, Japan, and the Philippines have intensified in the South China.........",
+        image: "https://cdn.cfr.org/sites/default/files/styles/open_graph_article/public/image/2020/05/RTX7FDU1.JPG",
+        link: "us_news1.html"
+      }
+      
+    ];
+
+    const container = document.getElementById("newsContainer");
+    const searchInput = document.getElementById("searchInput");
+
+    function renderNews(filter = "") {
+      container.innerHTML = "";
+      const filtered = newsData.filter(item =>
+        item.title.toLowerCase().includes(filter.toLowerCase()) ||
+        item.summary.toLowerCase().includes(filter.toLowerCase())
+      );
+      filtered.forEach(news => {
+        const card = document.createElement("div");
+        card.className = "news-card";
+        card.innerHTML = `
+          <img src="${news.image}" alt="news image">
+          <div class="news-info">
+            <h3>${news.title}</h3>
+            <div class="date">${news.date}</div>
+            <div class="summary">${news.summary}</div>
+            <a class="read-more" href="${news.link}">閱讀更多</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener("input", () => {
+      renderNews(searchInput.value);
+    });
+
+    renderNews();
+  </script>
+</body>
+</html>
